@@ -44,26 +44,34 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
     cp .env.example .env
     ```
 
-2. Instala las dependencias:
+2. Crea la base de datos SQLite:
+
+    ```shell
+    touch database/database.sqlite
+    ```
+
+3. Instala las dependencias:
 
     ```shell
     composer install
     ```
 
-3. Genera la clave de aplicación (application key):
+4. Genera la clave de aplicación (application key):
 
     ```shell
     php artisan key:generate
     ```
 
-4. Ejecuta las migraciones e importaciones de la base de datos:
+5. Ejecuta las migraciones e importaciones de la base de datos:
 
     ```shell
     php artisan migrate --seed
     ```
 
-5. Inicia el servidor local:
+6. Inicia el servidor local:
 
     ```shell
     php artisan serve
     ```
+
+7. Importa a Postman la colección `postman_collection.json` para realizar peticiones.
