@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\v1\BookController as BookV1;
+use App\Http\Controllers\Api\V1\BookController as BookControllerV1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +26,5 @@ Route::middleware('auth:sanctum')
     });
 
 Route::middleware('auth:sanctum')
-    ->apiResource('v1/books', BookV1::class)
+    ->apiResource('v1/books', BookControllerV1::class)
     ->only(['index', 'show', 'store', 'update', 'destroy']);
