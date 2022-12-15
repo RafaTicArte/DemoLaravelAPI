@@ -24,6 +24,10 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
 
 `GET /api/v1/books?filter=-title&page=2`
 
+### Obtener un libro
+
+`GET /api/v1/books/:id`
+
 ### Crear libro
 
 `POST /api/v1/books`
@@ -75,3 +79,11 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
     ```
 
 7. Importa a Postman la colección `postman_collection.json` para realizar peticiones.
+
+## Otros comandos
+
+1. Limpia la caché del servidor, si fuera necesario:
+
+    ```shell
+    php artisan cache:clear
+    ```

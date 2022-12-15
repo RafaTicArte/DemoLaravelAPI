@@ -14,7 +14,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'token' => $request->user()->createToken($request->name)->plainTextToken,
+                'token' => $request->user()->createToken($request->device)->plainTextToken,
                 'status' => 1,
                 'message' => 'Login success',
             ], 200);
@@ -31,7 +31,7 @@ class AuthController extends Controller
         return $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'name' => 'required',
+            'device' => 'required',
         ]);
     }
 
