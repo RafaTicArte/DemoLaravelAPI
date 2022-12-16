@@ -82,8 +82,20 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
 
 ## Otros comandos
 
-1. Limpia la caché del servidor, si fuera necesario:
+1. Limpia la caché de la aplicación:
 
     ```shell
     php artisan cache:clear
+    ```
+
+2. Limpia la caché de la configuración de la aplicación:
+
+    ```shell
+    php artisan config:clear
+    ```
+
+3. Limpia la caché de las rutas de la aplicación:
+
+    ```shell
+    php artisan route:clear
     ```
