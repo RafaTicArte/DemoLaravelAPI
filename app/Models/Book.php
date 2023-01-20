@@ -12,7 +12,7 @@ class Book extends Model
     // Prepara el campo para almacenar formato JSON
     // https://laravel.com/docs/8.x/eloquent-mutators#array-and-json-casting
     protected $casts = [
-        'extra' => 'array'
+        'extra' => 'array',
     ];
 
     protected $fillable = [

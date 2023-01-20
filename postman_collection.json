@@ -180,7 +180,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Learn Laravel\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github\"\n}",
+					"raw": "{\n    \"title\": \"Learn Laravel\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github\",\n    \"extra\": {\n            \"pages\": 100,\n            \"technology\": true,\n            \"comedy\": false\n        }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,7 +220,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 51,\n    \"title\": \"Learn Laravel (updated)\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github (updated)\"\n}",
+					"raw": "{\n    \"title\": \"Learn Laravel (updated)\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github (updated)\",\n    \"extra\": {\n            \"pages\": 200,\n            \"technology\": false,\n            \"comedy\": true\n        }\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
