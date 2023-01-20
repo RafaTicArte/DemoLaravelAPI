@@ -59,7 +59,9 @@ class BookController extends Controller
         $book = new Book();
         $book->title = $request->title;
         $book->description = $request->description;
+        $book->extra = $request->extra;
         $book->user_id = $request->user('api')->id;
+
         if ($book->save()) {
             return response()->json(new BookResource($book), 201);
         } else {
@@ -78,6 +80,8 @@ class BookController extends Controller
     {
         $book->title = $request->title;
         $book->description = $request->description;
+        $book->extra = $request->extra;
+
         if ($book->update()) {
             return response()->json(new BookResource($book), 201);
         } else {

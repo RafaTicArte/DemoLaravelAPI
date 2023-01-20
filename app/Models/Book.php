@@ -9,9 +9,16 @@ class Book extends Model
 {
     use HasFactory;
 
+    // Prepara el campo para almacenar formato JSON
+    // https://laravel.com/docs/8.x/eloquent-mutators#array-and-json-casting
+    protected $casts = [
+        'extra' => 'array'
+    ];
+
     protected $fillable = [
         'title',
         'description',
+        'extra',
         'user_id',
     ];
 
