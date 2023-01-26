@@ -14,7 +14,7 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request     $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -41,10 +41,11 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Book  $book
+     * @param  \Illuminate\Http\Request     $request
+     * @param  \App\Models\Book             $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Request $request, Book $book)
     {
         return new BookResource($book);
     }
@@ -52,11 +53,15 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Http\Requests\BookRequest   $request
      * @return \Illuminate\Http\Response
      */
     public function store(BookRequest $request)
     {
+        if ($request->user('api')->role != '1') {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $book = new Book();
         $book->title = $request->title;
         $book->description = $request->description;
@@ -66,19 +71,23 @@ class BookController extends Controller
         if ($book->save()) {
             return response()->json(new BookResource($book), 201);
         } else {
-            return response()->json(['message', 'Failed'], 400);
+            return response()->json(['message' => 'Failed'], 400);
         }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Book  $book
+     * @param  \Http\Requests\BookRequest   $request
+     * @param  \App\Models\Book             $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
+        if ($request->user('api')->role != '1') {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         $book->title = $request->title;
         $book->description = $request->description;
         $book->extra = $request->extra;
@@ -86,18 +95,23 @@ class BookController extends Controller
         if ($book->update()) {
             return response()->json(new BookResource($book), 201);
         } else {
-            return response()->json(['message', 'Failed'], 400);
+            return response()->json(['message' => 'Failed'], 400);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Book  $book
+     * @param  \Illuminate\Http\Request     $request
+     * @param  \App\Models\Book             $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy(Request $request, Book $book)
     {
+        if ($request->user('api')->role != '1') {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
         if ($book->delete()) {
             return response()->json([
                 'message' => 'Success',

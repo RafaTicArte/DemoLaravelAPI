@@ -19,7 +19,7 @@ class BookRequest extends FormRequest
         return [
             'title' => 'required|string|min:2',
             'description' => 'required|string|min:5',
-            'extra.pages' => 'required|int|min:1',
+            'extra.pages' => 'sometimes|int|min:1',
         ];
     }
 
