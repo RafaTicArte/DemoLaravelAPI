@@ -1,0 +1,184 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Rest Laravel",
+    "dateExported": "2023-11-20T13:35:42.709Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "c13aff24-5b9d-4121-9ff5-1c32412f4683",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://localhost:8000/api/login",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-20T11:49:24.218Z",
+            "modified": "2023-11-20T12:02:40.588Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"email\": \"info@ticarte.com\",\n    \"password\": \"password\",\n    \"device\": \"dev_client\"\n}",
+                "form": []
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "json.token",
+                    "action": "setto",
+                    "value": "{{books.token}}"
+                }
+            ]
+        },
+        {
+            "_id": "23d717df-38b6-43df-afa7-b1ecf50b2434",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "Logout",
+            "url": "http://localhost:8000/api/logout",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-20T11:49:24.219Z",
+            "modified": "2023-11-20T13:31:25.726Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": [
+                {
+                    "type": "set-env-var",
+                    "custom": "0",
+                    "action": "setto",
+                    "value": "{{books.token}}"
+                }
+            ]
+        },
+        {
+            "_id": "163ac21e-3360-4ece-9b79-4590782e2966",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "GET User",
+            "url": "http://localhost:8000/api/user",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-11-20T11:49:24.220Z",
+            "modified": "2023-11-20T12:00:39.241Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "29775970-8e14-4db9-88f4-52fdaee698ee",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "GET Books",
+            "url": "http://localhost:8000/api/v1/books?page=2",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-11-20T11:49:24.221Z",
+            "modified": "2023-11-20T13:34:25.249Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "2",
+                    "isPath": false
+                }
+            ],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ac949f33-30d7-420d-a038-b9e3a8da941b",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "GET Book",
+            "url": "http://localhost:8000/api/v1/books/1",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-11-20T11:49:24.222Z",
+            "modified": "2023-11-20T13:32:09.057Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0f5eb170-e82c-4998-9c7e-089d5858347e",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "POST Book",
+            "url": "http://localhost:8000/api/v1/books",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2023-11-20T11:49:24.223Z",
+            "modified": "2023-11-20T13:33:17.380Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"title\": \"Learn Laravel\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github\",\n    \"extra\": {\n            \"pages\": 100,\n            \"technology\": true,\n            \"comedy\": false\n        }\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ad179b74-50e9-4010-9837-89ceb6cf3a87",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "PUT Book",
+            "url": "http://localhost:8000/api/v1/books/51",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2023-11-20T11:49:24.224Z",
+            "modified": "2023-11-20T13:34:55.657Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"title\": \"Learn Laravel (updated)\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github (updated)\",\n    \"extra\": {\n            \"pages\": 200,\n            \"technology\": false,\n            \"comedy\": true\n        }\n\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": []
+        },
+        {
+            "_id": "67279361-f0b7-4026-a03a-67ece239ad91",
+            "colId": "a5903f29-3947-4ac8-a4ae-f41de2a149eb",
+            "containerId": "",
+            "name": "DEL Book",
+            "url": "http://localhost:8000/api/v1/books/51",
+            "method": "DELETE",
+            "sortNum": 80000,
+            "created": "2023-11-20T11:49:24.225Z",
+            "modified": "2023-11-20T13:34:58.173Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "{{books.token}}"
+            },
+            "tests": []
+        }
+    ]
+}
