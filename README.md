@@ -42,16 +42,16 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
 
 ## Instalación
 
-1. Copia `.env.example` a `.env`:
+1. Copia `.env.example` como `.env`.
 
-    ```shell
-    cp .env.example .env
-    ```
-
-2. Crea la base de datos SQLite:
+2. Crea la base de datos SQLite (que será un archivo vacío, puedes utilizar los siguientes comandos ya sea desde Linux o desde Windows):
 
     ```shell
     touch database/database.sqlite
+    ```
+
+    ```shell
+    type nul > database/database.sqlite
     ```
 
 3. Instala las dependencias:
@@ -78,7 +78,7 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
     php artisan serve
     ```
 
-7. Importa a Postman la colección `postman_collection.json` para realizar peticiones.
+7. Si utilizas Thunder Client (de Visual Studio Code Extension), importa la colección `rest_api_thunder_collection.json` para realizar peticiones de ejemplo. Crea la variable de entorno `books.token`.
 
 ## Otros comandos
 
