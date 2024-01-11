@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Rules\DescriptionValidation;
 
 class BookRequest extends FormRequest
 {
@@ -18,7 +19,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:2',
-            'description' => 'required|string|min:5',
+            'description' => ['required', 'string', new DescriptionValidation()],
             'extra.pages' => 'sometimes|int|min:1',
         ];
     }
