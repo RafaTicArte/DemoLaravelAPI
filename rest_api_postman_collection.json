@@ -1,0 +1,527 @@
+{
+  "info": {
+    "name": "DemoLaravelAPI",
+    "_postman_id": "e353b5c6-8e8e-482b-9f8a-9073cd55d63b",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "login"
+          ],
+          "port": "8000"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\": \"info@ticarte.com\",\n    \"password\": \"password\",\n    \"device\": \"dev_client\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.environment.set(\"books.token\", _.get(jsonData, \"token\"));",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Field status equals 1\", function () {",
+              "    pm.expect(_.get(jsonData, \"status\")).to.eql(1);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "user"
+          ],
+          "port": "8000"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.test(\"Field id equals 1\", function () {",
+              "    pm.expect(_.get(jsonData, \"id\")).to.eql(1);",
+              "});",
+              "pm.test(\"Field email equals info@ticarte.com\", function () {",
+              "    pm.expect(_.get(jsonData, \"email\")).to.eql(\"info@ticarte.com\");",
+              "});",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Books",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/books?page=2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "books"
+          ],
+          "port": "8000",
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            }
+          ]
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST Book",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/books",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "books"
+          ],
+          "port": "8000"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Learn Laravel\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github.\",\n    \"extra\": {\n            \"pages\": 100,\n            \"technology\": true,\n            \"comedy\": false\n        }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Field title equals Learn Laravel\", function () {",
+              "    pm.expect(_.get(jsonData, \"title\")).to.eql(\"Learn Laravel\");",
+              "});",
+              "pm.environment.set(\"books.id\", _.get(jsonData, \"id\"));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Book",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/books/{{books.id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "books",
+            "{{books.id}}"
+          ],
+          "port": "8000"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Field data.id equals {{books.id}}\", function () {",
+              "    pm.expect(_.get(jsonData, \"data.id\")).to.eql(pm.environment.get(\"books.id\") || pm.collectionVariables.get(\"books.id\") || pm.variables.get(\"books.id\"));",
+              "});",
+              "pm.test(\"Field data.title equals Learn Laravel\", function () {",
+              "    pm.expect(_.get(jsonData, \"data.title\")).to.eql(\"Learn Laravel\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT Book",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/books/{{books.id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "books",
+            "{{books.id}}"
+          ],
+          "port": "8000"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"Learn Laravel (updated)\",\n    \"description\": \"Learn Laravel API REST with DemoLaravelAPI Github (updated)\",\n    \"extra\": {\n            \"pages\": 200,\n            \"technology\": false,\n            \"comedy\": true\n        }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "pm.test(\"Field id equals {{books.id}}\", function () {",
+              "    pm.expect(_.get(jsonData, \"id\")).to.eql(pm.environment.get(\"books.id\") || pm.collectionVariables.get(\"books.id\") || pm.variables.get(\"books.id\"));",
+              "});",
+              "pm.test(\"Field title equals Learn Laravel (updated)\", function () {",
+              "    pm.expect(_.get(jsonData, \"title\")).to.eql(\"Learn Laravel (updated)\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DEL Book",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/books/{{books.id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "books",
+            "{{books.id}}"
+          ],
+          "port": "8000"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 204\", function () {",
+              "    pm.response.to.have.status(204);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST Book Error",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/v1/books",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "books"
+          ],
+          "port": "8000"
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"title\": \"L\",\n    \"description\": \"L\",\n    \"extra\": {\n            \"pages\": 100,\n            \"technology\": true,\n            \"comedy\": false\n        }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.test(\"Status code is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});",
+              "pm.test(\"Field success equals false\", function () {",
+              "    pm.expect(_.get(jsonData, \"success\")).to.eql(\"false\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Logout",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/logout",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "path": [
+            "api",
+            "logout"
+          ],
+          "port": "8000"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{books.token}}",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "let jsonData = {};",
+              "try { jsonData = pm.response.json(); } catch (e) { jsonData = {}; }",
+              "",
+              "pm.environment.set(\"books.token\", \"\");",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Field status equals 1\", function () {",
+              "    pm.expect(_.get(jsonData, \"status\")).to.eql(1);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

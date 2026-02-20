@@ -1,6 +1,6 @@
 # DemoLaravelAPI
 
-Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
+Servidor API REST de demostración desarrollado con el framework Laravel v12 (PHP).
 
 ## Uso
 
@@ -78,7 +78,9 @@ Servidor API REST de demostración desarrollado con el framework Laravel (PHP).
     php artisan serve
     ```
 
-7. Si utilizas Thunder Client (de Visual Studio Code Extension), importa la colección `rest_api_thunder_collection.json` para realizar peticiones de ejemplo. Crea la variable de entorno `books.token`.
+7. Importa la colección para comenzar a realizar peticiones de ejemplo, recuerda crear la variable de entorno `books.token`:
+    * Thunder Client (de Visual Studio Code Extension) - `rest_api_thunder_collection.json`
+    * Postman - `rest_api_postman_collection.json`
 
 ## Otros comandos
 
